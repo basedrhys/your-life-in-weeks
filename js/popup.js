@@ -96,7 +96,9 @@ chrome.storage.sync.get(['birthDateSet'], function(result) {
 
     // set canvasImg image src to dataURL
     // so it can be saved as an image
-    document.getElementById('canvasImg').src = dataURL;
+    var img = document.getElementById('canvasImg')
+    img.src = dataURL;
+    img.style = "";
   })
 });
 
