@@ -5,22 +5,10 @@
 'use strict';
 
 chrome.runtime.onInstalled.addListener(function() {
-  chrome.storage.sync.set({birthDateSet: false}, function() {
+  chrome.storage.sync.set({birthDateSet: true}, function() {
     console.log("The birthdate is set.");
   });
-  // chrome.storage.sync.set({birthYear: 1990, birthMonth: 11, birthDay: 20}, function() {
-  //   console.log("The birthValues is set.");
-  // });
-  chrome.storage.sync.set({color: '#3aa757'}, function() {
-    console.log("The color is green.");
-  });
-  chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
-    chrome.declarativeContent.onPageChanged.addRules([{
-      conditions: [new chrome.declarativeContent.PageStateMatcher({
-        pageUrl: {hostEquals: 'developer.chrome.com'},
-      })
-      ],
-          actions: [new chrome.declarativeContent.ShowPageAction()]
-    }]);
+  chrome.storage.sync.set({birthYear: 1990, birthMonth: 11, birthDay: 20}, function() {
+    console.log("The birthValues is set.");
   });
 });
