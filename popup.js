@@ -7,12 +7,14 @@ const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 const numWeeks = 52;
 const numYears = 90;
-const boxSize = 12, boxGap = 6;
-const boxMult = boxSize + boxGap
+const boxSize = 12, boxMargin = 6;
+const currWeekBoxIncrease = 6;
+const lineWidth = 3
+const boxAndMarginSize = boxSize + boxMargin
 
 // Set the canvas size
-canvas.width = boxMult * numWeeks - boxGap;
-canvas.height = boxMult * numYears - boxGap;
+canvas.width = boxAndMarginSize * numWeeks - boxMargin;
+canvas.height = boxAndMarginSize * numYears - boxMargin;
 ctx.fillStyle = "#FFF";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -48,12 +50,20 @@ chrome.storage.sync.get(['birthDateSet'], function(result) {
     
     let doneWeeks = weeksBetween(birthDate, currDate)
     let weekCount = 0
+
+    let currWeekX, currWeekY, currWeekBoxSize;
     
     for (let year = 0; year < numYears; year++) {
       for (let week = 0; week < numWeeks; week++) {        
         weekCount++;
+
+        let xPos = week * boxAndMarginSize
+        let yPos = year * boxAndMarginSize
+        
         if (weekCount === doneWeeks) {
-          ctx.fillStyle = currentColor;
+          currWeekX = xPos - currWeekBoxIncrease;
+          currWeekY = yPos - currWeekBoxIncrease;
+          currWeekBoxSize = boxSize + (currWeekBoxIncrease * 2)
         } else if (weekCount > doneWeeks) {
           // if (year == numYears - 1) 
           //   ctx.fillStyle = "#FF0"
@@ -63,11 +73,23 @@ chrome.storage.sync.get(['birthDateSet'], function(result) {
             ctx.fillStyle = futureColor;
         }
 
-        let xPos = week * boxMult
-        let yPos = year * boxMult
+
         ctx.fillRect(xPos, yPos, boxSize, boxSize);
       }
     }
+
+    // Draw the outline - a black filled box slightly bigger
+    ctx.fillStyle = "#000"
+    ctx.fillRect(currWeekX-lineWidth, 
+                currWeekY-lineWidth, 
+                currWeekBoxSize + (lineWidth * 2), 
+                currWeekBoxSize + (lineWidth * 2));
+
+    ctx.fillStyle = currentColor;
+    ctx.fillRect(currWeekX, 
+                currWeekY, 
+                currWeekBoxSize, 
+                currWeekBoxSize);
 
     // save canvas image as data url (png format by default)
     var dataURL = canvas.toDataURL();
