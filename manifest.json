@@ -1,5 +1,5 @@
 {
-    "name": "This Is Your Life",
+    "name": "Your Life In Weeks",
     "version": "0.1",
     "description": "",
     "options_page": "html/options.html",
@@ -9,7 +9,7 @@
       "persistent": false
     },
     "browser_action": {
-      "default_title": "This is Your Life",
+      "default_title": "Your Life In Weeks",
       "default_popup": "html/popup.html",
       "default_icon": {
         "16": "images/get_started16.png",
