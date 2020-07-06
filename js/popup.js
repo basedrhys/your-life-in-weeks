@@ -27,7 +27,6 @@ ctx.fillStyle = pastColor;
 let birthDateSet;
 let birthYear, birthMonth, birthDay;
 
-setMessage("")
 // Set the input values if we've already saved a birthdate
 chrome.storage.sync.get(['birthDateSet'], function(result) {
   birthDateSet = result.birthDateSet
