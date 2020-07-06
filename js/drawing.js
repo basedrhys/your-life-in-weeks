@@ -5,7 +5,7 @@ export function setupCanvas() {
 }
 
 export function clearCanvas() {
-    ctx.fillStyle = "#FFF";
+    ctx.fillStyle = backgroundColor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -13,9 +13,9 @@ export function drawThisWeek(currWeekX, currWeekY) {
     let currWeekBoxSize = boxSize + (currWeekBoxIncrease * 2)
 
     // Draw the outline - a black filled box slightly bigger
-    ctx.fillStyle = "#000"
     ctx.fillRect(currWeekX-lineWidth, 
                 currWeekY-lineWidth, 
+    ctx.fillStyle = outlineColor
                 currWeekBoxSize + (lineWidth * 2), 
                 currWeekBoxSize + (lineWidth * 2));
 
