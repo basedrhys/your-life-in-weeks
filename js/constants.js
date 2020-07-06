@@ -14,8 +14,8 @@ const ctx = canvas.getContext('2d');
  */
 const numWeeks = 52;
 const numYears = 90;
-const boxSize = 12, boxMargin = 6;
-const currWeekBoxIncrease = 6;
+const boxSize = 8, boxMargin = 4;
+const currWeekBoxIncrease = 4;
 const lineWidth = 3
 const boxAndMarginSize = boxSize + boxMargin
 
