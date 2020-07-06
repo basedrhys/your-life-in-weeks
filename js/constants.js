@@ -1,4 +1,9 @@
 /**
+ * Flags
+ */
+const testMode = true;
+
+/**
  * Canvas vars
  */
 const canvas = document.getElementById('myCanvas'); 
