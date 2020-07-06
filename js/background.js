@@ -6,5 +6,5 @@
 
 chrome.runtime.onInstalled.addListener(function() {
   chrome.storage.sync.set({birthDateSet: true});
-  chrome.storage.sync.set({birthYear: 1990, birthMonth: 11, birthDay: 20});
+  chrome.storage.sync.set({birthYear: 1996, birthMonth: 11, birthDay: 17});
 });
