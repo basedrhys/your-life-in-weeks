@@ -2,8 +2,14 @@ import { saveCanvasToImage } from "./util.js";
 
 export function setupCanvas() {
     // Set the canvas size
-    canvas.width = boxAndMarginSize * numWeeks - boxMargin;
-    canvas.height = boxAndMarginSize * numYears - boxMargin;
+    let width = numWeeks * boxAndMarginSize - boxMargin
+    let height = numYears * boxAndMarginSize - boxMargin;
+
+    width += (canvasPadding * 2)
+    height += (canvasPadding * 2)
+
+    canvas.width = width;
+    canvas.height = height;
 
     clearCanvas();
 }
@@ -59,6 +65,10 @@ export function drawMyLife(doneWeeks) {
 
 function drawRect(x, y, width, height, color) {
     ctx.fillStyle = color
+
+    x += canvasPadding
+    y += canvasPadding
+
     ctx.fillRect(x, y, width, height)
 }
 
