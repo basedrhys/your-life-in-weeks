@@ -1,16 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      #canvasImg {
-        height: 550px;
-      }
-    </style>
-  </head>
-  <body>
-    <h1 id="message"></h1>
-    <canvas id="myCanvas" style="display: none;"></canvas>
-    <img id="canvasImg" alt="Right click to save me!" style="display: none;">
-    <script src="../js/popup.js" type="module"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Life In Weeks</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+  <script src="../js/fontawesome.js"></script>
+  <link rel="stylesheet" href="../css/bulma-tooltip.min.css">
+  <style>
+    #canvasImg {
+      height: 350px;
+    }
+  </style>
+</head>
+<body>
+  <section class="px-4 py-4">
+    <div class="container has-text-centered">
+      <h5 class="title is-5">
+        Your Life In Weeks
+      </h5>
+      <div class="columns">
+        <div class="column">
+          <button class="button" data-tooltip="Copy to Clipboard">
+            <span class="icon">
+              <i class="fas fa-clipboard"></i>
+            </span>
+          </button>
+          <button class="button" data-tooltip="Show/Hide Life Chapters">
+            <span class="icon">
+              <i class="fas fa-palette"></i>
+            </span>
+          </button>
+          <button class="button" data-tooltip="Show/Hide Year Splitting">
+            <span class="icon">
+              <i class="fas fa-arrows-alt-v"></i>
+            </span>
+          </button>
+          <button class="button" data-tooltip="Go to Settings">
+            <span class="icon">
+              <i class="fas fa-cog"></i>
+            </span>
+          </button>
+        </div>
+      </div>
+      <canvas id="myCanvas" style="display: none;"></canvas>
+      <img id="canvasImg" alt="Right click to save me!" style="display: none;">
+      <script src="../js/popup.js" type="module"></script>
+    </div>
+  </section>
+</body>
 </html>
