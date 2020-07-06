@@ -25,6 +25,7 @@ const boxAndMarginSize = boxSize + boxMargin
 const pastColor = "#FF5252";
 const currentColor = "#4CAF50"
 const futureColor = "#BDBDBD"
+const borderColor = "#FA0";
 
 /**
  * IDs
