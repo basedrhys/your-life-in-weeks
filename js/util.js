@@ -49,12 +49,20 @@ function addDeleteBtnListener() {
       });
 }
 
-export function addCopyBtnListener() {
+function addCopyBtnListener() {
     var btn = document.getElementById(copyBtnID)
     // onClick's logic below:
     btn.addEventListener('click', function() {
         copyImgToClipboard();
         showNotification();
+    });
+}
+
+function addOptionsBtnListener() {
+    var btn = document.getElementById(optionsBtnID);
+    // onClick's logic below:
+    btn.addEventListener('click', function() {
+        chrome.runtime.openOptionsPage();
     });
 }
 
@@ -75,22 +83,10 @@ function showNotification() {
     notification.style.display = "block"
 }
 
-export function addOptionsBtnListener() {
-    var btn = document.getElementById(optionsBtnID);
-    // onClick's logic below:
-    btn.addEventListener('click', function() {
-        chrome.runtime.openOptionsPage();
-    });
-}
-
 export function calcDoneWeeks(birthYear, birthMonth, birthDay) {
     let d1 = new Date(`${birthYear}-${birthMonth}-${birthDay}`)
     let d2 = new Date()
     return Math.round((d2 - d1) / (7 * 24 * 60 * 60 * 1000));
-}
-
-export function setMessage(msg) {
-    document.getElementById("message").innerHTML = msg;
 }
 
 export function saveCanvasToImage() {
