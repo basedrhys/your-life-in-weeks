@@ -13,32 +13,34 @@ export function clearCanvas() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-export function drawDay(week, year) {
+export function drawDay(week, year, color) {
     let xPos = week * boxAndMarginSize
     let yPos = year * boxAndMarginSize
 
-    ctx.fillRect(xPos, yPos, boxSize, boxSize);
+    drawRect(xPos, yPos, boxSize, boxSize, color)
 }
 
 export function drawMyLife(doneWeeks) {
     let weekCount = 0
     
     let currWeek, currYear;
+
+    let currColor;
     
     for (let year = 0; year < numYears; year++) {
       for (let week = 0; week < numWeeks; week++) {        
         // Set the current fill style
-        ctx.fillStyle = pastColor;
+        currColor = pastColor;
                 
         if (weekCount > doneWeeks) {
-          ctx.fillStyle = futureColor;
+          currColor = futureColor;
           
           if (testMode) {
-            drawBorder(week, year);
+              currColor = testBorder(week, year)
           } 
         }
         
-        drawDay(week, year)
+        drawDay(week, year, currColor)
 
         // Save the position for drawing this week later
         if (weekCount === doneWeeks) {
@@ -55,7 +57,12 @@ export function drawMyLife(doneWeeks) {
     saveCanvasToImage();
 }
 
-export function drawThisWeek(currWeek, currYear) {
+function drawRect(x, y, width, height, color) {
+    ctx.fillStyle = color
+    ctx.fillRect(x, y, width, height)
+}
+
+function drawThisWeek(currWeek, currYear) {
     let currWeekBoxSize = boxSize + (currWeekBoxIncrease * 2)
 
     // Convert week and year to actual x and y positions
@@ -80,10 +87,10 @@ export function drawThisWeek(currWeek, currYear) {
                 currWeekBoxSize);
 }
 
-export function drawBorder(week, year) {
+function testBorder(week, year) {
     if (year == 0 || year == numYears - 1 ||
         week == 0 || week == numWeeks - 1) 
-        ctx.fillStyle = testOutsideColor
+        return testOutsideColor
     else
-        ctx.fillStyle = futureColor;
+        return futureColor;
 }
