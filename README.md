@@ -10,7 +10,7 @@ You are presented with a simple diagram outlining your life so far - a grid of s
 
 This gives a simple but powerful perspective on life, showing how limited the time that we have is. 
 
-Although the current life expectancy is typically lower, this calendar counts until you turn **90** (can't hurt to be optimistic).
+Although the current life expectancy is typically lower, this calendar counts until you turn **90** - can't hurt to be optimistic ¯\\_(ツ)_/¯
 
 <img src="images/sample.png" alt="Sample Image" height="600"/>
 

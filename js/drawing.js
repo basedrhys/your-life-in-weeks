@@ -106,7 +106,7 @@ function drawLabels() {
  * @param {number} num Number to draw label for
  */
 function shouldDrawLabel(num) {
-    return num != 0 && num % 5 == 0;
+    return num % 5 == 0;
 }
 
 /**

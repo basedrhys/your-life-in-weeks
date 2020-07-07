@@ -1,29 +1,24 @@
 export function setInputValues(inputYear, inputMonth, inputDay) {
     // Set the input values if we've already saved a birthdate
-    chrome.storage.sync.get(['birthDateSet'], function(result) {
-        let birthDateSet = result.birthDateSet
-        if (birthDateSet) {
-            // Get the rest of the birth values
-            chrome.storage.sync.get([
-                'birthYear',
-                'birthMonth',
-                'birthDay'
-            ], function(birthValues) {
-                inputYear.value = birthValues.birthYear
-                inputMonth.value = birthValues.birthMonth
-                inputDay.value = birthValues.birthDay
-            })
-        }
-    });
+    
+    chrome.storage.sync.get([
+        'birthYear',
+        'birthMonth',
+        'birthDay'
+    ], function(birthValues) {
+        inputYear.value = birthValues.birthYear
+        inputMonth.value = birthValues.birthMonth
+        inputDay.value = birthValues.birthDay
+    })
 }
 
 export function saveInputValues(inputYear, inputMonth, inputDay) {
     chrome.storage.sync.set({
-        birthDateSet: true,
         birthYear: inputYear.value,
         birthMonth: inputMonth.value,
         birthDay: inputDay.value
     }, function() {
+        // Close the current tab when they save
         chrome.tabs.getCurrent(function(tab) {
             chrome.tabs.remove(tab.id, function() { });
         });
@@ -41,12 +36,11 @@ export function setupButtonListeners() {
 function addDeleteBtnListener() {
     (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
         let $notification = $delete.parentNode;
-    
+        
         $delete.addEventListener('click', () => {
-        //   $notification.parentNode.removeChild($notification);
             $notification.style.display = "none"
         });
-      });
+    });
 }
 
 function addCopyBtnListener() {
