@@ -1,6 +1,14 @@
 import { saveCanvasToImage } from "./util.js";
 
 /**
+ * Draws a white rect over the canvas
+ */
+function clearCanvas() {
+    ctx.fillStyle = backgroundColor;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+/**
  * Setup the canvas size - altering width and height clears the canvas so 
  * do this before any drawing.
  */
@@ -19,91 +27,6 @@ export function setupCanvas() {
     canvas.height = height;
 
     clearCanvas();
-}
-
-/**
- * Draws a white rect over the canvas
- */
-function clearCanvas() {
-    ctx.fillStyle = backgroundColor;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-}
-
-/**
- * Draw a day on the canvas, given a week and year
- * @param {number} week Week to draw for
- * @param {number} year Year to draw for
- * @param {string} color Color to draw this day with
- */
-function drawDay(week, year, color) {
-    let xPos = week * boxAndMarginSize
-    let yPos = year * boxAndMarginSize
-
-    drawRect(xPos, yPos, boxSize, boxSize, color)
-}
-
-/**
- * We don't want to draw every label, this allows only every 5th label to be drawn
- * @param {number} num Number to draw label for
- */
-function shouldDrawLabel(num) {
-    return num != 0 && num % 5 == 0;
-}
-
-/**
- * Draws the (week or year) label on the canvas
- * @param {number} val Week or Year value
- * @param {string} type Type of value we're dealing with - "week" or "year"
- */
-function drawLabel(val, type) {
-    let xPos, yPos;
-
-    let distanceVal = val * boxAndMarginSize;
-    let zeroVal = -textGraphSpace;
-
-    if (type == "week") {
-        xPos = distanceVal;
-        yPos = zeroVal;
-        xPos -= boxAndMarginSize * 0.8;
-    } else if (type == "year") {
-        xPos = zeroVal;
-        yPos = distanceVal;
-        yPos += boxAndMarginSize * 0.8
-    }
-
-    ctx.fillText(
-        val.toString(),
-        accountForPadding(xPos),
-        accountForPadding(yPos)
-    )
-}
-
-/**
- * Draw the x and y labels for the week and year
- */
-function drawLabels() {
-    ctx.font = "12px Arial"
-    ctx.fillStyle = "#000"
-    
-    ctx.textAlign = "right"
-    for (let year = 0; year < numYears; year++) {
-        
-        if (!shouldDrawLabel(year))
-            continue;
-
-        drawLabel(year, "year")
-    }
-
-    ctx.textAlign = "center";
-
-    for (let week = 0; week < numWeeks; week++) {
-        let weekOut = week + 1
-
-        if (!shouldDrawLabel(weekOut)) 
-            continue;
-
-        drawLabel(weekOut, "week")
-    }
 }
 
 /**
@@ -148,6 +71,83 @@ export function drawMyLife(doneWeeks) {
     drawThisWeek(currWeek, currYear)
     
     saveCanvasToImage();
+}
+
+/**
+ * Draw the x and y labels for the week and year
+ */
+function drawLabels() {
+    ctx.font = "12px Arial"
+    ctx.fillStyle = "#000"
+    
+    ctx.textAlign = "right"
+    for (let year = 0; year < numYears; year++) {
+        
+        if (!shouldDrawLabel(year))
+            continue;
+
+        drawLabel(year, "year")
+    }
+
+    ctx.textAlign = "center";
+
+    for (let week = 0; week < numWeeks; week++) {
+        let weekOut = week + 1
+
+        if (!shouldDrawLabel(weekOut)) 
+            continue;
+
+        drawLabel(weekOut, "week")
+    }
+}
+
+/**
+ * We don't want to draw every label, this allows only every 5th label to be drawn
+ * @param {number} num Number to draw label for
+ */
+function shouldDrawLabel(num) {
+    return num != 0 && num % 5 == 0;
+}
+
+/**
+ * Draws the (week or year) label on the canvas
+ * @param {number} val Week or Year value
+ * @param {string} type Type of value we're dealing with - "week" or "year"
+ */
+function drawLabel(val, type) {
+    let xPos, yPos;
+
+    let distanceVal = val * boxAndMarginSize;
+    let zeroVal = -textGraphSpace;
+
+    if (type == "week") {
+        xPos = distanceVal;
+        yPos = zeroVal;
+        xPos -= boxAndMarginSize * 0.7;
+    } else if (type == "year") {
+        xPos = zeroVal;
+        yPos = distanceVal;
+        yPos += boxAndMarginSize * 0.7
+    }
+
+    ctx.fillText(
+        val.toString(),
+        accountForPadding(xPos),
+        accountForPadding(yPos)
+    )
+}
+
+/**
+ * Draw a day on the canvas, given a week and year
+ * @param {number} week Week to draw for
+ * @param {number} year Year to draw for
+ * @param {string} color Color to draw this day with
+ */
+function drawDay(week, year, color) {
+    let xPos = week * boxAndMarginSize
+    let yPos = year * boxAndMarginSize
+
+    drawRect(xPos, yPos, boxSize, boxSize, color)
 }
 
 /**
