@@ -63,13 +63,18 @@ export function drawMyLife(doneWeeks) {
     saveCanvasToImage();
 }
 
+function accountForPadding(val) {
+    return val + canvasPadding + textPadding;
+}
+
 function drawRect(x, y, width, height, color) {
     ctx.fillStyle = color
 
-    x += canvasPadding
-    y += canvasPadding
-
-    ctx.fillRect(x, y, width, height)
+    ctx.fillRect(
+        accountForPadding(x), 
+        accountForPadding(y), 
+        width, 
+        height)
 }
 
 function drawThisWeek(currWeek, currYear) {
@@ -84,17 +89,18 @@ function drawThisWeek(currWeek, currYear) {
     yCorrected = yCorrected - currWeekBoxIncrease;
 
     // Draw the outline - a black filled box slightly bigger
-    ctx.fillStyle = outlineColor
-    ctx.fillRect(xCorrected-lineWidth, 
-                yCorrected-lineWidth, 
-                currWeekBoxSize + (lineWidth * 2), 
-                currWeekBoxSize + (lineWidth * 2));
-
-    ctx.fillStyle = currentColor;
-    ctx.fillRect(xCorrected, 
+    // ctx.fillStyle = outlineColor
+    drawRect(xCorrected-lineWidth, 
+        yCorrected-lineWidth, 
+        currWeekBoxSize + (lineWidth * 2), 
+        currWeekBoxSize + (lineWidth * 2),
+        outlineColor)
+    
+    drawRect(xCorrected, 
                 yCorrected, 
                 currWeekBoxSize, 
-                currWeekBoxSize);
+                currWeekBoxSize,
+                currentColor);
 }
 
 function testBorder(week, year) {
