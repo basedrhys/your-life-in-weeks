@@ -8,6 +8,9 @@ export function setupCanvas() {
     width += (canvasPadding * 2)
     height += (canvasPadding * 2)
 
+    width += (textPadding * 2)
+    height += (textPadding * 2)
+
     canvas.width = width;
     canvas.height = height;
 
@@ -26,12 +29,66 @@ export function drawDay(week, year, color) {
     drawRect(xPos, yPos, boxSize, boxSize, color)
 }
 
+function shouldDrawLabel(num) {
+    return num != 0 && num % 5 == 0;
+}
+
+function drawLabel(val, type) {
+    let xPos, yPos;
+
+    let distanceVal = val * boxAndMarginSize;
+    let zeroVal = -textGraphSpace;
+
+    if (type == "week") {
+        xPos = distanceVal;
+        yPos = zeroVal;
+        xPos -= boxAndMarginSize * 0.8;
+    } else if (type == "year") {
+        xPos = zeroVal;
+        yPos = distanceVal;
+        yPos += boxAndMarginSize * 0.8
+    }
+
+    ctx.fillText(
+        val.toString(),
+        accountForPadding(xPos),
+        accountForPadding(yPos)
+    )
+}
+
+function drawLabels() {
+    ctx.font = "12px Arial"
+    ctx.fillStyle = "#000"
+    
+    ctx.textAlign = "right"
+    for (let year = 0; year < numYears; year++) {
+        
+        if (!shouldDrawLabel(year))
+            continue;
+
+        drawLabel(year, "year")
+    }
+
+    ctx.textAlign = "center";
+
+    for (let week = 0; week < numWeeks; week++) {
+        let weekOut = week + 1
+
+        if (!shouldDrawLabel(weekOut)) 
+            continue;
+
+        drawLabel(weekOut, "week")
+    }
+}
+
 export function drawMyLife(doneWeeks) {
     let weekCount = 0
     
     let currWeek, currYear;
 
     let currColor;
+
+    drawLabels();
     
     for (let year = 0; year < numYears; year++) {
       for (let week = 0; week < numWeeks; week++) {        

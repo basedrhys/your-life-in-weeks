@@ -18,6 +18,8 @@ const boxSize = 8, boxMargin = 4;
 const currWeekBoxIncrease = 4;
 const lineWidth = 3
 const canvasPadding = 10;
+const textPadding = 12;
+const textGraphSpace = 4;
 
 const boxAndMarginSize = boxSize + boxMargin
 
