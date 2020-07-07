@@ -1,5 +1,9 @@
 import { saveCanvasToImage } from "./util.js";
 
+/**
+ * Setup the canvas size - altering width and height clears the canvas so 
+ * do this before any drawing.
+ */
 export function setupCanvas() {
     // Set the canvas size
     let width = numWeeks * boxAndMarginSize - boxMargin
@@ -17,22 +21,40 @@ export function setupCanvas() {
     clearCanvas();
 }
 
-export function clearCanvas() {
+/**
+ * Draws a white rect over the canvas
+ */
+function clearCanvas() {
     ctx.fillStyle = backgroundColor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-export function drawDay(week, year, color) {
+/**
+ * Draw a day on the canvas, given a week and year
+ * @param {number} week Week to draw for
+ * @param {number} year Year to draw for
+ * @param {string} color Color to draw this day with
+ */
+function drawDay(week, year, color) {
     let xPos = week * boxAndMarginSize
     let yPos = year * boxAndMarginSize
 
     drawRect(xPos, yPos, boxSize, boxSize, color)
 }
 
+/**
+ * We don't want to draw every label, this allows only every 5th label to be drawn
+ * @param {number} num Number to draw label for
+ */
 function shouldDrawLabel(num) {
     return num != 0 && num % 5 == 0;
 }
 
+/**
+ * Draws the (week or year) label on the canvas
+ * @param {number} val Week or Year value
+ * @param {string} type Type of value we're dealing with - "week" or "year"
+ */
 function drawLabel(val, type) {
     let xPos, yPos;
 
@@ -56,6 +78,9 @@ function drawLabel(val, type) {
     )
 }
 
+/**
+ * Draw the x and y labels for the week and year
+ */
 function drawLabels() {
     ctx.font = "12px Arial"
     ctx.fillStyle = "#000"
@@ -81,6 +106,11 @@ function drawLabels() {
     }
 }
 
+/**
+ * Entrypoint for the drawing - draws a 90x52 grid of squares, colored in up
+ * to the current week.
+ * @param {number} doneWeeks Weeks through my life, as of today
+ */
 export function drawMyLife(doneWeeks) {
     let weekCount = 0
     
@@ -120,10 +150,23 @@ export function drawMyLife(doneWeeks) {
     saveCanvasToImage();
 }
 
+/**
+ * Adds in the outside border to the co-ordinate.
+ * @param {number} val Value to shift with padding
+ */
 function accountForPadding(val) {
     return val + canvasPadding + textPadding;
 }
 
+/**
+ * Generic rectangle drawing method - corrects the x and y to account for padding.
+ * All rect drawing should be done through this method.
+ * @param {number} x X position of the rectangle
+ * @param {number} y Y position of the rectangle
+ * @param {number} width Width of the rectangle
+ * @param {height} height Height of the rectangle
+ * @param {string} color Color to draw the rectangle
+ */
 function drawRect(x, y, width, height, color) {
     ctx.fillStyle = color
 
@@ -134,6 +177,11 @@ function drawRect(x, y, width, height, color) {
         height)
 }
 
+/**
+ * Draws an enlarged square for the current week we're currently in
+ * @param {number} currWeek The current week today
+ * @param {number} currYear The current year today
+ */
 function drawThisWeek(currWeek, currYear) {
     let currWeekBoxSize = boxSize + (currWeekBoxIncrease * 2)
 
@@ -160,6 +208,11 @@ function drawThisWeek(currWeek, currYear) {
                 currentColor);
 }
 
+/**
+ * Draws a border on the edge squares of the diagram, useful for debugging
+ * @param {number} week The current week we're iterating on
+ * @param {number} year The current year we're iterating on
+ */
 function testBorder(week, year) {
     if (year == 0 || year == numYears - 1 ||
         week == 0 || week == numWeeks - 1) 

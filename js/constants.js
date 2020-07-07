@@ -1,7 +1,7 @@
 /**
  * Flags
  */
-const testMode = true;
+const testMode = false;
 
 /**
  * Canvas vars
@@ -14,13 +14,22 @@ const ctx = canvas.getContext('2d');
  */
 const numWeeks = 52;
 const numYears = 90;
-const boxSize = 8, boxMargin = 4;
-const currWeekBoxIncrease = 4;
-const lineWidth = 3
-const canvasPadding = 10;
-const textPadding = 12;
-const textGraphSpace = 4;
 
+// Size of each day
+const boxSize = 8;
+// Gap between each day
+const boxMargin = 4;
+// How many pixels to increase the current week's rectangle size
+const currWeekBoxIncrease = 4;
+// Width of the outline for the current week's rectangle
+const lineWidth = 3
+// Extra padding outside the canvas
+const canvasPadding = 10;
+// Extra padding to make space for the labels
+const textPadding = 12;
+// Gap between the labels and the rectangles
+const textGraphSpace = 4;
+// Total size of each week (size of the box and the margin)
 const boxAndMarginSize = boxSize + boxMargin
 
 /**
