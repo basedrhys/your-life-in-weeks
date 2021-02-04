@@ -1,6 +1,6 @@
 {
     "name": "Your Life In Weeks",
-    "version": "0.1",
+    "version": "1.0",
     "description": "",
     "options_page": "html/options.html",
     "permissions": ["activeTab", "declarativeContent", "storage"],
