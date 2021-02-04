@@ -57,5 +57,5 @@ const notificationID = "notificationCard"
 // Popup Button IDs
 const copyBtnID = "btnCopy"
 const lifeChaptersBtnID = "btnLifeChapters"
-const yearSplitBtnID = "btnYearSplit"
+const openGithubBtnID = "btnOpenGithub"
 const optionsBtnID = "btnOptions"
