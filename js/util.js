@@ -78,9 +78,10 @@ function showNotification() {
 }
 
 export function calcDoneWeeks(birthYear, birthMonth, birthDay) {
-    let d1 = new Date(`${birthYear}-${birthMonth}-${birthDay}`)
-    let d2 = new Date()
-    return Math.round((d2 - d1) / (7 * 24 * 60 * 60 * 1000));
+    var fixedBirthMonth = birthMonth - 1;
+    let d1 = new Date(birthYear, fixedBirthMonth, birthDay)
+    let d2 = new Date();
+    return Math.floor((d2 - d1) / (7 * 24 * 60 * 60 * 1000));
 }
 
 export function saveCanvasToImage() {
