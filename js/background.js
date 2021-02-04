@@ -4,5 +4,9 @@
  * Set the default birthdate when this extension is installed
  */
 chrome.runtime.onInstalled.addListener(function() {
-  chrome.storage.sync.set({birthYear: 1996, birthMonth: 11, birthDay: 17});
+  var today = new Date();
+  var defaultYear = today.getFullYear();
+  var defaultMonth = today.getMonth() + 1;
+  var defualtDay = today.getDay();
+  chrome.storage.sync.set({birthYear: defaultYear, birthMonth: defaultMonth, birthDay: defualtDay});
 });
