@@ -1,18 +1,53 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="../css/button.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.3.45/css/materialdesignicons.min.css">
     <style>
-      input {
-        max-width: 100px;
+      .parent {
+        display: grid;
+        place-items: center;
+      }
+
+      .options-form {
+        padding: 200px;
+      }
+
+      body {
+        height: 100vh;
+        background: rgb(0,191,255);
+        background: radial-gradient(circle, rgba(0,191,255,1) 0%, rgba(0,159,213,1) 100%);
       }
     </style>
   </head>
   <body>
-    <input placeholder="Year:" type="number" name="year" id="inputYear">
-    <input placeholder="Month:" type="number" name="month" id="inputMonth">
-    <input placeholder="Day:" type="number" name="day" id="inputDay">
-    <button class="button green small" id="saveButton">Save and Close</button>
+    <div class="parent">
+      <form class="options-form">
+        <h1 class="title">Your Life in Weeks</h1>
+        <div class="field">
+          <label class="label">Year of Birth</label>
+          <div class="control">
+            <input id="inputYear" class="input" type="number" placeholder="YYYY">
+          </div>
+        </div>
+        
+        <div class="field">
+          <label class="label">Month of Birth</label>
+          <div class="control">
+            <input id="inputMonth" class="input" type="number" placeholder="MM">
+          </div>
+        </div>
+        
+        <div class="field">
+          <label class="label">Day of Birth</label>
+          <div class="control">
+            <input id="inputDay" class="input" type="number" placeholder="DD">
+          </div>
+        </div>
+        
+        <button class="button is-dark is-rounded" id="saveButton">Save and Close</button>
+      </form>
+    </div>
     <!-- <div id="buttonDiv">
     </div> -->
   </body>
