@@ -7,6 +7,7 @@ This is an unofficial Chrome extension inspired from Wait But Why's [Your Life I
 Table of Contents
 =================
 - [Overview](#overview)
+- [Installation](#installation)
 - [Usage](#usage)
 - [What's the Point of This?](#whats-the-point-of-this)
 
@@ -19,6 +20,10 @@ This gives a simple but powerful perspective on life, showing how limited the ti
 Although the current life expectancy is typically lower, this calendar counts until you turn **90** - can't hurt to be optimistic ¯\\_(ツ)_/¯
 
 <img src="images/sample.png" alt="Sample Image" height="600"/>
+
+## Installation
+
+Simply visit the [Chrome Web Store Page](https://chrome.google.com/webstore/detail/your-life-in-weeks/cjollnhponlokandidjmegifjghahllj) for the extension and click **Add to Chrome** - voilà!
 
 ## Usage
 
